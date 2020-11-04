@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz IT ACADEMY</title>
+
+<style>
+.Panel {
+background-color:cadetblue;
+border-radius: 10px;
+padding: 20px;
+width: 60% ;
+font-size: 15pt;
+}
+.ques{
+font-size: 18pt;
+font-weight: bold;
+}
+.nxtBtn{
+font-stretch: extra-expanded;
+float: left;
+font-size: 18pt;
+background-color: bisque;
+height: 35px;
+font-weight: bold;
+}
+.lijevicss{
+padding: 2%;
+float: left;
+}
+</style>
+</head>
+
+<body>
+
+<div class="Panel">
+<div class="ques" id="question">
+</div>
+<div><input type="radio" id="opt1" onclick="radioButtonFunction(`opt1`)" name="options">
+<span id="optt1"></span>
+</div>
+<div><input type="radio" id="opt2" onclick="radioButtonFunction(`opt2`)" name="options">
+<span id="optt2"></span>
+</div>
+<div><input type="radio" id="opt3" onclick="radioButtonFunction(`opt3`)" name="options">
+<span id="optt3"></span>
+</div>
+<div><input type="radio" id="opt4" onclick="radioButtonFunction(`opt4`)" name="options">
+<span id="optt4"></span>
+</div>
+<div class="lijevicss">
+<button class="nxtBtn" onclick="checkAnswer()">next</button>
+<button id="radioBtn" onclick="radioButtonFunction()">Sačuvani rezultati</button>
+
+</div>
+</div>
+<script>
+
+
+function radioButtonFunction(value) {
+localStorage.setItem(jsonData[i].q,value);
+}
+var jsonData = [
+{
+"q": "Which one is correct team name in NBA?",
+"opt1": "New York Bulls",
+"opt2": "Los Angeles Kings",
+"opt3": "Golden State Warriros",
+"opt4": "Huston Rocket",
+"answer": "Huston Rocket"
+},
+{
+"q": "`Namaste` is a traditional greeting in which Asian language?",
+"opt1": "Hindi",
+"opt2": "Mandarin",
+"opt3": "Nepalese",
+"opt4": "Thai",
+"answer": "Hindi"
+},
+{
+"q": "The Spree river flows through which major European capital city?",
+"opt1": "Berlin",
+"opt2": "Paris",
+"opt3": "Rome",
+"opt4": "London",
+"answer": "Berlin"
+},
+{
+"q": "Which famous artist had both a `Rose Period` and a `Blue Period`?",
+"opt1": "Pablo Picasso",
+"opt2": "Vincent van Gogh",
+"opt3": "Salvador Dalí",
+"opt4": "Edgar Degas",
+"answer": "Pablo Picasso"
+}
+]
+
+var i = 0;
+var correctCount = 0;
+generate(0);
+
+function generate(index) {
+document.getElementById("question").innerHTML = jsonData[index].q;
+document.getElementById("optt1").innerHTML = jsonData[index].opt1;
+document.getElementById("optt2").innerHTML = jsonData[index].opt2;
+document.getElementById("optt3").innerHTML = jsonData[index].opt3;
+document.getElementById("optt4").innerHTML = jsonData[index].opt4;
+
+}
+
+function checkAnswer (){
+if (document.getElementById ("opt1").checked && jsonData[i].opt1 == jsonData[i].answer) {
+correctCount++;
+}
+if (document.getElementById ("opt2").checked && jsonData[i].opt2 == jsonData[i].answer) {
+correctCount++;
+}
+if (document.getElementById ("opt3").checked && jsonData[i].opt3 == jsonData[i].answer) {
+correctCount++;
+}
+if (document.getElementById ("opt4").checked && jsonData[i].opt4 == jsonData[i].answer) {
+correctCount++;
+}
+
+i++;
+
+if(jsonData.length-1 < i) {
+document.write("Osvojio si : "+correctCount+"");
+}
+generate(i);
+}
+
+</script>
+</body>
